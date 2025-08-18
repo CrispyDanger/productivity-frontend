@@ -10,16 +10,20 @@
         stacked
         :to="{ path: '/calendar/' }"
         variant="text"
+        disabled
         >Calendar</v-btn
       >
       <v-btn
+        class="btn"
         prepend-icon="mdi-home-outline"
         stacked
         :to="{ path: '/' }"
         variant="text"
         >Home</v-btn
       >
-      <v-btn disabled variant="text">Coming Soon</v-btn>
+      <v-btn disabled variant="text" prepend-icon="mdi-robot-outline" stacked
+        >AI Chat</v-btn
+      >
     </div>
 
     <div class="header__username-panel d-flex justify-end">
@@ -44,10 +48,17 @@ export default {
 <style scoped lang="scss">
 .header {
   &__central-items {
-    // margin: 0 auto;
-
     .v-btn {
       margin-inline: 50px;
+      background: linear-gradient(45deg, #42a5f5, #ab47bc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      :deep(.v-icon) {
+        -webkit-text-fill-color: initial;
+        background: none;
+        color: #42a5f5;
+      }
     }
   }
 
