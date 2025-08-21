@@ -1,7 +1,8 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
+      <v-spacer />
+      <v-col cols="6">
         <h1>Test</h1>
         <span
           >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
@@ -34,6 +35,7 @@
           sagittis sapien vitae, scelerisque turpis.</span
         >
       </v-col>
+      <v-spacer />
     </v-row>
   </v-container>
 </template>

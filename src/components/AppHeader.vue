@@ -47,6 +47,9 @@ export default {
 
 <style scoped lang="scss">
 .header {
+  background: transparent;
+  backdrop-filter: blur(12px);
+
   &__central-items {
     .v-btn {
       margin-inline: 50px;
