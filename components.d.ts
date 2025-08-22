@@ -12,6 +12,7 @@ declare module 'vue' {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     EventForm: typeof import('./src/components/TheCalendarView/EventForm.vue')['default']
     Home: typeof import('./src/components/IndexView/Home.vue')['default']
+    LoginPanel: typeof import('./src/components/LoginPanel/LoginPanel.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheCalendarFull: typeof import('./src/components/TheCalendarView/TheCalendarFull.vue')['default']
