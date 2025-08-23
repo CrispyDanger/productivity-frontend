@@ -28,7 +28,7 @@
 
     <div class="header__username-panel d-flex justify-end">
       <v-btn variant="text"
-        >Hello, *insert usermname*
+        >Hello, {{ auth.user?.username ?? "Unknown" }}
         <v-menu activator="parent">
           <v-list>
             <v-list-item>Test</v-list-item>
@@ -40,8 +40,20 @@
 </template>
 
 <script>
+import { useAuthStore } from "@/stores/accountData";
+
 export default {
-  setup() {},
+  setup() {
+    const auth = useAuthStore();
+
+    const getUserName = () => {
+      if (auth.user.username) {
+        return auth.user.username;
+      }
+    };
+
+    return { auth };
+  },
 };
 </script>
 

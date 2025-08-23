@@ -6,5 +6,8 @@
 </template>
 
 <script setup>
-//
+import { useAuthStore } from "@/stores/accountData";
+
+const auth = useAuthStore();
+auth.loadFromStorage();
 </script>
