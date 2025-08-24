@@ -21,7 +21,11 @@
         variant="text"
         >Home</v-btn
       >
-      <v-btn disabled variant="text" prepend-icon="mdi-robot-outline" stacked
+      <v-btn
+        :to="{ path: '/chat/' }"
+        variant="text"
+        prepend-icon="mdi-robot-outline"
+        stacked
         >AI Chat</v-btn
       >
     </div>
