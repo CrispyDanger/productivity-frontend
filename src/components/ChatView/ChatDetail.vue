@@ -47,6 +47,7 @@
 <script>
 import { onMounted, onUnmounted } from "vue";
 import { extractDomain } from "@/utils/domainUtils";
+import { useAuthStore } from "@/stores/accountData";
 
 export default {
   setup() {
@@ -58,10 +59,13 @@ export default {
       isLoading: false,
     });
 
+    const auth = useAuthStore();
+
     const startSocket = async () => {
       const url = extractDomain(import.meta.env.VITE_REMOTE_HOST);
+      const userId = auth.user.id;
 
-      state.socket = new WebSocket(`ws://${url}/ws/chat/123123131`);
+      state.socket = new WebSocket(`ws://${url}/ws/chat/${userId}/`);
 
       state.socket.onopen = () => {
         state.status = "Connected";
