@@ -36,21 +36,26 @@ export const useChatStore = defineStore("chat", {
         console.error("WebSocket error:", error);
       };
 
-      this.socket.onmessage = (event) => {
+      this.socket.onmessage = async (event) => {
         const messageData = JSON.parse(event.data);
-        const isNotSystem = messageData.role !== "system";
-        if (isNotSystem) {
-          this.answers.push(messageData);
-          this.isLoading = false;
-          const currentRoute = router.currentRoute.value.params.id;
+        if (messageData.role === "system") return;
+        this.answers.push(messageData);
+        this.isLoading = false;
+        const currentRoute = router.currentRoute.value.params.id;
 
-          if (!currentRoute) {
-            router.push({
-              name: "Chat",
-              params: { id: messageData.conversation_id },
-            });
-          }
+        if (!currentRoute) {
+          await router.push({
+            name: "Chat",
+            params: { id: messageData.conversation_id },
+          });
+          await this.getConversations();
+          this.currentConversationId = messageData.conversation_id;
         }
+        const selectedConversation = this.conversations.find(
+          (obj) => obj.id === messageData.conversation_id
+        );
+
+        selectedConversation.messages = [...this.answers];
       };
     },
 
@@ -107,8 +112,7 @@ export const useChatStore = defineStore("chat", {
     },
   },
   getters: {
-    answersList: (state) =>
-      state.answers.map((obj, index) => ({ index, ...obj })),
+    answersList: (state) => state.answers,
     conversationsList: (state) => state.conversations,
     isLoadingChat: (state) => state.isLoading,
     conversationId: (state) => state.currentConversationId,

@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/max-attributes-per-line -->
 <!-- eslint-disable vue/html-closing-bracket-newline -->
 <template>
-  <div class="d-flex header align-center justify-center py-2 elevation-5">
+  <div class="d-flex header align-center justify-center py-2">
     <div class="empty" />
 
     <div class="d-flex header__central-items align-center justify-center">

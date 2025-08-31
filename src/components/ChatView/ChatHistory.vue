@@ -10,7 +10,7 @@
         elevation="5"
         @click="chatStore.changeChat(item)"
       >
-        {{ item.messages[1].content }}</v-card
+        {{ item.messages[1]?.content || item.title }}</v-card
       >
     </div>
   </div>
@@ -24,8 +24,9 @@ export default {
   setup() {
     const chatStore = useChatStore();
 
-    const createNewChat = () => {
-      router.replace({ path: "/chat" });
+    const createNewChat = async () => {
+      await router.replace({ path: "/chat" });
+      chatStore.currentConversationId = null;
       chatStore.clearMessages();
     };
 
@@ -36,13 +37,14 @@ export default {
 
 <style lang="scss" scoped>
 .conv-box {
-  padding: 10px;
+  padding-top: 10px;
   border-radius: 10px;
   background-color: oklch(0.2745 0.005 285.823);
   height: 100%;
 }
 
 .conversations {
+  padding-inline: 10px;
   max-height: 80vh;
   overflow: auto;
 

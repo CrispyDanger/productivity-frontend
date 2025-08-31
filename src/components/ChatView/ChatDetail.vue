@@ -22,23 +22,24 @@
       indeterminate
     ></v-progress-linear>
   </v-card>
-  <div class="message-box d-flex mt-1">
-    <v-text-field
-      class="message-box__text-field"
-      v-model="state.message"
-      variant="solo-filled"
-      flat
-      single-line
-      hide-details
-      label="Message"
-      @keyup.enter="sendMessage"
-    ></v-text-field>
-    <v-btn
-      @click="sendMessage"
-      class="message-box__send-btn"
-      icon="mdi-send"
-    ></v-btn>
-  </div>
+  <v-form @submit.prevent="sendMessage">
+    <div class="message-box d-flex mt-1">
+      <v-text-field
+        class="message-box__text-field"
+        v-model="state.message"
+        variant="solo-filled"
+        flat
+        single-line
+        hide-details
+        label="Message"
+      ></v-text-field>
+      <v-btn
+        type="submit"
+        class="message-box__send-btn"
+        icon="mdi-send"
+      ></v-btn>
+    </div>
+  </v-form>
 </template>
 
 <script>
@@ -64,7 +65,9 @@ export default {
     };
 
     const sendMessage = async () => {
-      await chat.sendMessage(state.message);
+      if (state.message.length > 0) {
+        await chat.sendMessage(state.message);
+      }
       state.message = "";
     };
 
@@ -99,6 +102,10 @@ export default {
   align-items: center;
   &__text-field {
     max-width: 100%;
+
+    :deep(.v-field) {
+      border-radius: 10px;
+    }
   }
 
   &__send-btn {
