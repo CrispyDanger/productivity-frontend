@@ -24,6 +24,7 @@
 
 <script>
 import { useAuthStore } from "@/stores/accountData";
+import { reactive, computed } from "vue";
 
 export default {
   setup() {

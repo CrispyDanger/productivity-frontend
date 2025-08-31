@@ -8,15 +8,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     ChatDetail: typeof import('./src/components/ChatView/ChatDetail.vue')['default']
     ChatHistory: typeof import('./src/components/ChatView/ChatHistory.vue')['default']
-    EventForm: typeof import('./src/components/TheCalendarView/EventForm.vue')['default']
     Home: typeof import('./src/components/IndexView/Home.vue')['default']
     LoginPanel: typeof import('./src/components/LoginPanel/LoginPanel.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheCalendarFull: typeof import('./src/components/TheCalendarView/TheCalendarFull.vue')['default']
   }
 }

@@ -19,6 +19,11 @@ const routes = [
     component: () => import("@/pages/Chat.vue"),
     name: "Chat",
   },
+  {
+    path: "/social",
+    component: () => import("@/pages/Social.vue"),
+    name: "Social",
+  },
 ];
 
 const router = createRouter({

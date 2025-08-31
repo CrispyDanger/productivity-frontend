@@ -10,7 +10,7 @@
         stacked
         variant="text"
         density="comfortable"
-        disabled
+        :to="{ name: 'Social' }"
         >Social</v-btn
       >
       <v-btn
