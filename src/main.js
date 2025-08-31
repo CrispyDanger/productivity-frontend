@@ -16,6 +16,8 @@ import axios from "axios";
 // Styles
 import "unfonts.css";
 
+import "./auth/auth-interceptor";
+
 axios.defaults.baseURL = `${import.meta.env.VITE_REMOTE_HOST}`;
 
 const app = createApp(App);

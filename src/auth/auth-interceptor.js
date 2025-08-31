@@ -1,28 +1,31 @@
 import axios from "axios";
-import { decryptdata } from "@/utils/encrypt";
+import { decryptData } from "@/utils/encrypt";
+import { useAuthStore } from "@/stores/accountData";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-});
-
-api.interceptors.request.use((config) => {
-  const token = decryptdata(localStorage.getItem("access"));
+axios.interceptors.request.use((config) => {
+  let token = localStorage.getItem("access");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
-api.interceptors.response.use(
+axios.interceptors.response.use(
   (response) => response,
   async (error) => {
     const auth = useAuthStore();
-
-    if (error.response.status === 401 && auth.refresh) {
+    const isAuthError = error.response && error.response.status === 401;
+    console.log(error.config);
+    if (
+      isAuthError &&
+      auth.refresh &&
+      error.config.url != "/api/token/" &&
+      error.config.url != "/api/token/refresh/"
+    ) {
       try {
         await auth.refreshToken();
         error.config.headers.Authorization = `Bearer ${auth.access}`;
-        return api.request(error.config);
+        return axios.request(error.config);
       } catch (refreshError) {
         auth.logout();
       }
@@ -31,4 +34,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default axios;

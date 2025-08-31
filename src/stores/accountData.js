@@ -4,7 +4,7 @@ import { encryptData, decryptData } from "@/utils/encrypt";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
-    user: null,
+    user: {},
     access: null,
     refresh: null,
   }),
@@ -15,8 +15,8 @@ export const useAuthStore = defineStore("auth", {
         this.access = res.data.access;
         this.refresh = res.data.refresh;
 
-        localStorage.setItem("access", encryptData(this.access));
-        localStorage.setItem("refresh", encryptData(this.refresh));
+        localStorage.setItem("access", this.access);
+        localStorage.setItem("refresh", this.refresh);
 
         await this.getUser();
       } catch (err) {
@@ -60,8 +60,11 @@ export const useAuthStore = defineStore("auth", {
       const refresh = localStorage.getItem("refresh");
 
       this.user = user ? JSON.parse(decryptData(user)) : null;
-      this.access = access ? decryptData(access) : null;
-      this.refresh = refresh ? decryptData(refresh) : null;
+      this.access = access ? access : null;
+      this.refresh = refresh ? refresh : null;
     },
+  },
+  getters: {
+    userData: (state) => state.user,
   },
 });

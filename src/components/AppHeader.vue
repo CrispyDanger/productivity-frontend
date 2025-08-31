@@ -1,14 +1,13 @@
 <!-- eslint-disable vue/max-attributes-per-line -->
 <!-- eslint-disable vue/html-closing-bracket-newline -->
 <template>
-  <v-card class="d-flex header align-center justify-center py-2">
+  <div class="d-flex header align-center justify-center py-2">
     <div class="empty" />
 
     <div class="d-flex header__central-items align-center justify-center">
       <v-btn
         prepend-icon="mdi-calendar-blank-outline"
         stacked
-        :to="{ path: '/calendar/' }"
         variant="text"
         disabled
         >Calendar</v-btn
@@ -32,7 +31,7 @@
 
     <div class="header__username-panel d-flex justify-end">
       <v-btn variant="text"
-        >Hello, {{ auth.user?.username ?? "Unknown" }}
+        >Hello, {{ auth.userData?.username ?? "unknown" }}
         <v-menu activator="parent">
           <v-list>
             <v-list-item>Test</v-list-item>
@@ -40,7 +39,7 @@
         </v-menu>
       </v-btn>
     </div>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -50,12 +49,6 @@ export default {
   setup() {
     const auth = useAuthStore();
 
-    const getUserName = () => {
-      if (auth.user.username) {
-        return auth.user.username;
-      }
-    };
-
     return { auth };
   },
 };
@@ -63,8 +56,10 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  background: transparent;
-  backdrop-filter: blur(12px);
+  position: relative;
+  background: oklch(0.141 0.005 285.823);
+  padding: 1rem 2rem;
+  z-index: 1;
 
   &__central-items {
     .v-btn {

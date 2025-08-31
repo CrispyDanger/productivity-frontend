@@ -9,8 +9,31 @@
 //   $color-pack: false
 // );
 
+html,
 body {
-  position: relative;
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.v-main {
+  background-color: oklch(0.141 0.005 285.823);
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #3f3f3f;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #a8a8a8;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

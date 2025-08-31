@@ -1,0 +1,35 @@
+@mixin animated-gradient-border(
+  $thickness: 3px,
+  $colors: (
+    #42a5f5,
+    #ab47bc,
+  ),
+  $duration: 5s
+) {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0; // shorthand for top:0; right:0; bottom:0; left:0;
+    padding: $thickness; // thickness of the border
+    pointer-events: none;
+    border: $thickness solid transparent;
+    border-radius: inherit; // optional: respects parent's border-radius
+    border-image: linear-gradient(45deg, $colors...) 1;
+    animation: gradientBorder $duration linear infinite;
+  }
+}
+
+@keyframes gradientBorder {
+  0% {
+    border-image-source: linear-gradient(45deg, #42a5f5, #ab47bc);
+  }
+  50% {
+    border-image-source: linear-gradient(225deg, #42a5f5, #ab47bc);
+  }
+  100% {
+    border-image-source: linear-gradient(405deg, #42a5f5, #ab47bc);
+  }
+}
