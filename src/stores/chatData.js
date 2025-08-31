@@ -38,15 +38,18 @@ export const useChatStore = defineStore("chat", {
 
       this.socket.onmessage = (event) => {
         const messageData = JSON.parse(event.data);
-        this.answers.push(messageData);
-        this.isLoading = false;
-        const currentRoute = router.currentRoute.value.params.id;
+        const isNotSystem = messageData.role !== "system";
+        if (isNotSystem) {
+          this.answers.push(messageData);
+          this.isLoading = false;
+          const currentRoute = router.currentRoute.value.params.id;
 
-        if (!currentRoute && messageData.role !== "system") {
-          router.push({
-            name: "Chat",
-            params: { id: messageData.conversation_id },
-          });
+          if (!currentRoute) {
+            router.push({
+              name: "Chat",
+              params: { id: messageData.conversation_id },
+            });
+          }
         }
       };
     },

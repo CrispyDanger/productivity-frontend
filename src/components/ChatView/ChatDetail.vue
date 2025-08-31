@@ -1,20 +1,19 @@
 <template>
   <v-card class="message-history" id="answers-container">
     <div class="answer-list">
-      <v-list-item v-for="(item, index) in chat.answersList">
-        <v-card
-          :class="
-            'chat-bubble px-3 py-2 ' +
-            (item.role === 'user' ? 'user-message' : '')
-          "
-          variant="tonal"
-        >
-          <v-card-subtitle class="px-0 text-capitalize">
-            <span>{{ item.role }}</span>
-          </v-card-subtitle>
-          <span>{{ item.content }}</span>
-        </v-card>
-      </v-list-item>
+      <v-card
+        v-for="(item, index) in chat.answersList"
+        :class="
+          'chat-bubble elevation-10 px-3 py-2 my-4 ' +
+          (item.role === 'user' ? 'user-message' : '')
+        "
+        variant="tonal"
+      >
+        <v-card-subtitle class="px-0 text-capitalize">
+          <span>{{ item.role }}</span>
+        </v-card-subtitle>
+        <span>{{ item.content }}</span>
+      </v-card>
     </div>
     <v-progress-linear
       class="my-4"
@@ -99,7 +98,6 @@ export default {
   background: oklch(0.141 0.005 285.823);
   align-items: center;
   &__text-field {
-    border-radius: 20px;
     max-width: 100%;
   }
 
@@ -110,10 +108,12 @@ export default {
 }
 
 .message-history {
-  background: oklch(0.141 0.005 285.823);
+  background: oklch(0.2745 0.005 285.823);
+  border-radius: 10px;
   overflow: auto;
   padding: 10px;
-  height: 82dvh;
+  height: 81dvh;
+  margin-bottom: 12px;
   max-height: 82dvh;
 
   .chat-bubble {

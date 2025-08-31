@@ -1,23 +1,18 @@
 <template>
-  <div class="actions">
-    <v-list-item class="d-flex align-center justify-center px-0">
-      <v-btn @click="createNewChat" class="gradient">
-        new Chat</v-btn
-      ></v-list-item
-    >
-  </div>
-  <div class="conversations">
-    <v-list-item class="px-0" v-for="item in chatStore.conversationsList">
+  <div class="conv-box">
+    <div class="actions d-flex align-center justify-center">
+      <v-btn @click="createNewChat" append-icon="mdi-plus"> new Chat</v-btn>
+    </div>
+    <div class="conversations">
       <v-card
-        :class="[
-          'gradient',
-          { selected: chatStore.conversationId === item.id },
-        ]"
+        v-for="item in chatStore.conversationsList"
+        :class="['mb-4', { selected: chatStore.conversationId === item.id }]"
+        elevation="5"
         @click="chatStore.changeChat(item)"
       >
         {{ item.messages[1].content }}</v-card
-      ></v-list-item
-    >
+      >
+    </div>
   </div>
 </template>
 
@@ -40,7 +35,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "@/styles/mixins";
+.conv-box {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: oklch(0.2745 0.005 285.823);
+  height: 100%;
+}
 
 .conversations {
   max-height: 80vh;
@@ -51,30 +51,26 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border-radius: 10px;
     padding: 15px;
-    background-color: oklch(0.141 0.005 285.823);
+    background: oklch(0.141 0.005 285.823);
 
     span {
       white-space: none;
     }
+  }
+
+  .selected {
+    background: linear-gradient(45deg, #1f4e75, #ab47bc);
   }
 }
 
 .actions {
   margin-bottom: 15px;
   .v-btn {
+    font-weight: bold;
+    border-radius: 10px;
     background-color: oklch(0.141 0.005 285.823);
   }
-}
-.gradient {
-  @include mixins.animated-gradient-border(
-    3px,
-    (#42a5f5, #ab47bc, #42a5f5),
-    6s
-  );
-}
-
-.selected {
-  background: linear-gradient(45deg, #42a5f5, #ab47bc);
 }
 </style>

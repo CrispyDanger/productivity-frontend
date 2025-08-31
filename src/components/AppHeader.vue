@@ -1,28 +1,31 @@
 <!-- eslint-disable vue/max-attributes-per-line -->
 <!-- eslint-disable vue/html-closing-bracket-newline -->
 <template>
-  <div class="d-flex header align-center justify-center py-2">
+  <div class="d-flex header align-center justify-center py-2 elevation-5">
     <div class="empty" />
 
     <div class="d-flex header__central-items align-center justify-center">
       <v-btn
-        prepend-icon="mdi-calendar-blank-outline"
+        prepend-icon="mdi-chat-processing-outline"
         stacked
         variant="text"
+        density="comfortable"
         disabled
-        >Calendar</v-btn
+        >Social</v-btn
       >
       <v-btn
         class="btn"
         prepend-icon="mdi-home-outline"
         stacked
-        :to="{ path: '/' }"
+        density="comfortable"
+        :to="{ name: 'Home' }"
         variant="text"
         >Home</v-btn
       >
       <v-btn
-        :to="{ path: '/chat/' }"
+        :to="{ name: 'Chat' }"
         variant="text"
+        density="comfortable"
         prepend-icon="mdi-robot-outline"
         stacked
         >AI Chat</v-btn
@@ -57,7 +60,7 @@ export default {
 <style scoped lang="scss">
 .header {
   position: relative;
-  background: oklch(0.141 0.005 285.823);
+  background: oklch(0.161 0.005 285.823);
   padding: 1rem 2rem;
   z-index: 1;
 
