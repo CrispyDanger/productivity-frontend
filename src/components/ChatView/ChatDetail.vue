@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, watch, reactive } from "vue";
+import { onMounted, onUnmounted, watch, reactive, nextTick } from "vue";
 import { useChatStore } from "@/stores/chatData";
 import { useGoTo } from "vuetify";
 import { storeToRefs } from "pinia";

@@ -83,6 +83,7 @@ export const useChatStore = defineStore("chat", {
     async closeSocket() {
       await this.socket.close();
       this.clearMessages();
+      this.currentConversationId = null;
     },
 
     async sendMessage(message) {
