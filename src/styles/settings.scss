@@ -9,6 +9,12 @@
 //   $color-pack: false
 // );
 
+$header-height: 80px;
+
+:root {
+  --header-height: #{$header-height};
+}
+
 html,
 body {
   margin: 0;
@@ -18,7 +24,10 @@ body {
 }
 
 .v-main {
-  background-color: oklch(0.141 0.005 285.823);
+  //   Background
+  background: linear-gradient(120deg, #ab47bc 20%, transparent 60%),
+    linear-gradient(120deg, #1a1a1a 40%, transparent 80%);
+  backdrop-filter: blur(20px) contrast(120%);
 }
 
 *::-webkit-scrollbar {

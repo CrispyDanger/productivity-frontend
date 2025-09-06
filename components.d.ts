@@ -11,8 +11,10 @@ declare module 'vue' {
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     ChatDetail: typeof import('./src/components/ChatView/ChatDetail.vue')['default']
     ChatHistory: typeof import('./src/components/ChatView/ChatHistory.vue')['default']
+    Feed: typeof import('./src/components/SocialView/Feed.vue')['default']
     Home: typeof import('./src/components/IndexView/Home.vue')['default']
     LoginPanel: typeof import('./src/components/LoginPanel/LoginPanel.vue')['default']
+    Menu: typeof import('./src/components/SocialView/Menu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

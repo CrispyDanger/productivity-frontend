@@ -1,21 +1,16 @@
 <template>
-  <span>Social</span>
-  <span v-for="(item, index) in socialStore.socialFeed">{{ item }}</span>
+  <v-row dense>
+    <v-col cols="2"> <Menu /> </v-col>
+    <v-col cols="10"><Feed /></v-col>
+  </v-row>
 </template>
 
 <script>
-import { onMounted } from "vue";
-import { useSocialStore } from "@/stores/socialData";
+import Feed from "@/components/SocialView/Feed.vue";
+import Menu from "@/components/SocialView/Menu.vue";
 
 export default {
-  setup() {
-    const socialStore = useSocialStore();
-
-    onMounted(() => {
-      socialStore.getSocialFeed();
-    });
-    return { socialStore };
-  },
+  components: { Feed, Menu },
 };
 </script>
 
